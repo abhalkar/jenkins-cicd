@@ -15,8 +15,12 @@
     - to see graphical view of our ci/cd pipeline
 - gitHub
     - to apply webhook with github 
-
-
+- seed Jenkins
+    - use for seed job to exicute 
+    - we can cerate a job using the seed job 
+    - seed job is used to create the new job
+- maven intergation 
+    - 
         
 
             

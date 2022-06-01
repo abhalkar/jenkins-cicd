@@ -142,14 +142,21 @@
         ...
 
 # What is SDLC 
-    - it is the process of working in IT industry that how s/w should develop delopy diliver and the process is set for that called as SDLC lifecycle police.
+    - it is the process of working in IT industry that how s/w should develop delopy diliver and for that process is set hence called as SDLC lifecycle police.
 
 # what is webhook 
     - it is used to integrate the jenkins with git/gitlab.
-    - webhook appy trigger to perfom push operation
+    - webhook apply trigger to perfom push operation
     - nevigate -> build trigger -> []github hook trigger for gitscm polling
     - go in repo enable or add webhook 
-        
+    - also need to install new gitHub plugins  
+    - when developer push the code to git/github will trigger the webhook so the next automated process will start exicuting.
+    
+# what is seed jobs
+    - seed job are used to create a newjob 
+    - select the process job dsl in Build
+
+    
 
  
 
