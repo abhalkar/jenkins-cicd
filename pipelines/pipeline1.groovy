@@ -3,7 +3,7 @@ node {
         git branch: 'main', url: 'https://gitlab.com/abhalkar/studentapp-ui.git'
     }
     stage('Build') { 
-        echo "webhook test" 
+        echo "Build test" 
     }
     stage('Test') { 
         echo "Test success"
