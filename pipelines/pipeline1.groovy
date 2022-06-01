@@ -1,6 +1,6 @@
 node {  
      stage('Pull') { 
-        git branch: 'main', url: 'https://gitlab.com/abhalkar/studentapp-ui.git'
+        git branch: 'main', url: 'https://github.com/abhalkar/studentapp-ui.git'
     }
     stage('Build') { 
         echo "Build test" 
