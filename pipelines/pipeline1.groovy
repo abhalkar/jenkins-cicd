@@ -9,6 +9,6 @@ node {
         echo "Test success"
     }
     stage('Deploy') { 
-        echo "Deploy success"
+        echo "webhook added success"
     }
 }
