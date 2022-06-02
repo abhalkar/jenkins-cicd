@@ -1,0 +1,25 @@
+pipeline {
+    agent any 
+    stages {
+        stage ('pull') { 
+            steps {
+                git branch: 'main', url: 'https://gitlab.com/abhalkar/studentapp-ui.git' 
+            }
+        }
+        stage ('build') { 
+            steps {
+                sh- 'mvn clean package'
+            }
+        }
+        stage ('test') { 
+            steps {
+                echo "Test done"
+            }
+        }
+        stage ('deploy') { 
+            steps {
+                echo "Deployed successfully"
+            }
+        }
+    }
+}
