@@ -151,10 +151,34 @@
     - go in repo enable or add webhook 
     - also need to install new gitHub plugins  
     - when developer push the code to git/github will trigger the webhook so the next automated process will start exicuting.
-    
+
 # what is seed jobs
     - seed job are used to create a newjob 
     - select the process job dsl in Build
+    - used to take backup of your jobs
+    - operation as code 
+        - error we can face ```script not approved for use```
+        - to resolve this install new plugin 
+            - plugin name :- Authorized projects
+
+# how to take backup of our jobs
+    - XML jobs to dsl github search on google
+    - Jenkins XML to Job DSL converter repo```https://github.com/abhalkar/jenkinsxml2jobdsl```
+    - yum install maven 
+    - Clone the above repo in jenkins machine 
+    - ./gradlew build
+    - cd /root/jenkinsxml2jobdsl/build/libs
+    - java -jar jenkinsxml2jobdsl.jar -u admin -a admin -j 13.233.64.230 -p 8080 pipeline-job2
+    - Writing jobs/pipeline-job2.groovy
+    - so now to use the backuped file to launch same job adjust the script file(pipeline-job2.groovy) 
+    - create a new file seedjobs.groovy and copy the data form jobs/pipeline-job2.groovy
+    - now create a new job -> frestyle -> source code -> provide gitlab url -> rrocess job DLS -> look on filesystem -> seed-jobs/seedjob.groovy
+        - while crrating a new job from backuped file 
+            - remember to change the name of now job 
+            - url 
+            - cread 
+            - path 
+
 
     
 

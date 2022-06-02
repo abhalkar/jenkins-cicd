@@ -19,9 +19,14 @@
     - use for seed job to exicute 
     - we can cerate a job using the seed job 
     - seed job is used to create the new job
+- Authorized projects
+    - when we face the error
+        - ```script not approved for use``
+        - to remove this error install above plugin
+        - then configure the project 
+            - nevigate -> manage jenkins -> Configure Global Security -> Access Control for Builds ->Project default Build Authorization -> run as user aho triggred build
 - maven intergation 
     - 
-        
 
             
         

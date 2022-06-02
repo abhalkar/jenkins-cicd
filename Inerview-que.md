@@ -1,0 +1,15 @@
+# Interview que on devops 
+- What is difference betn git pull,featch,merge,clone ?
+- what is git rebase and git merge ?
+- what is pipeline ?
+- scripted pipeline vs declerative pipeline ?
+- pull pipeline code from git
+- what is upstream and downstream ?
+    - upstream is trigger applied on 2nd job so once 1st will exicute reach to second.
+    - downstream is trigger applied by default 
+- what is seedjobs(save job, templete) ?
+    - seedjob script is nothig but templete
+- seedjob bachup ?
+- what is webhooks and git plugins(github) 
+- what is maven ?
+- 
