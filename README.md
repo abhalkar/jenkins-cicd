@@ -261,7 +261,7 @@
         - allow the 8080 port 
         - url:- ip:8080:app-name/   -> to verify 
 
-## lets setup a pipeline for all pull,build,test, deploy 
+## lets setup a pipeline for all pull,build,test, deploy  for application 
     - node 1
         - lauch a new instace(node1) 
         - # curl -O https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.79/bin/apache-tomcat-8.5.79.zip
@@ -281,7 +281,7 @@
             - <role rolename="manager-jmx"/> 
             - <role rolename="manager-status"/>
             - <role rolename="admin-gui"/>
-            - <user username="linux" password="readhat" roles="manager-gui","manager-script","manager-jmx","manager-status","admin-gui"/>
+            - <user username="linux" password="readhat" roles="manager-gui,manager-script,manager-jmx,manager-status,admin-gui"/>
 
         - # cd ../webapps/
         - # cd host-manager/META-INF/
@@ -295,19 +295,77 @@
 
         - # ./catalina.sh stop 
         - # ./catalina.sh start
-        
+
     - jenkins master
         - aad a new iteam 
         - create a pipeline project
         - pull it form repo 
         - provide the script path 
 
-    
-    
+    - create a syntex for deploy stage
+        - install plugin deploy to container
+        - refer pipelinemaven.jdp 
 
- 
+# implementing the sonarqube for testong
 
-    
+    - used for tesing the application 
+    - sonarqube is java based application 
+    - run no of tesing on sonarqube
+    - launch an aws instance for sonarqube
+    - prequesties is JAVA 
+    - installing sonarqube on instance 
+        - # yum install epel-release unzip vim wget -y
+        - need Belsoft java 
+        - # wget https://download.bell-sw.com/java/11.0.4/bellsoft-jdk11.0.4-linux-amd64.rpm
+        - # yim install java -y
+        - # rpm -ivh bellsoft-jdk11.0.4-linux-amd64.rpm
+        - # alternatives java        --> to check the default java select belsoft
+        - sonarqube data is stored on database servre
+            - # rpm -ivh http://repo.mysql.com/mysql57-community-release-el7.rpm
+        - # rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+        - # yum install mysql-server -y
+        - # systemctl start msqld
+        - # systemctl enable msqld
+        - # echo 'vm.max_map_count=262144' >/etc/sysctl.conf
+        - # sysctl -p
+        - # echo '* - nofile 80000' >>/etc/security/limits.conf
+        - # sed -i -e '/query_cache_size/ d' -e '$ a query_cache_size = 15M' /etc/my.cnf
+        - # systemctl restart mysqld
+        - # grep 'password' /var/log/mysqld.log   -> pass is stored eg- (YFTlurLi3pf
+        - # mysql_secure_installation    -> make all yes
+        - # mysql -p -u root
+            - show databases    -> passw stored
+            - show tables;       -> usr infor have file
+            - show databases;
+        - now create a db 
+            - create database sonarqube;
+            - create user 'sonarqube'@'localhost' identified by 'Redhat@123';
+            - grant all privileges on sonarqube.* to 'sonarqube'@'localhost';
+            - flush privileges;
+        - now lwts install sonarqube
+        - # wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.9.1.zip
+        - # unzip sonarqube-7.9.1.zip
+        - # mv sonarqube-7.9.1 /opt/sonarqube
+        - # cd /opt/
+        - # mv sonarqube sonar
+        - # sed -i -e '/^sonar.jdbc.username/ d' -e '/^sonar.jdbc.password/ d' -e '/^sonar.jdbc.url/ d' -e '/^sonar.web.host/ d' -e '/^sonar.web.port/ d' /opt/sonar/conf/sonar.properties
+        - # sed -i -e '/#sonar.jdbc.username/ a sonar.jdbc.username=sonarqube' -e '/#sonar.jdbc.password/ a sonar.jdbc.password=Cloudblitz@123' -e '/InnoDB/ a sonar.jdbc.url=jdbc.mysql://localhost:3306/sonarqube?useUnicode=true&characterEncoding=utf&rewriteBatchedStatements=true&useConfigs=maxPerformance' -e '/#sonar.web.host/ a sonar.web.host=0.0.0.0' /opt/sonar/conf/sonar.properties         ->> we will provide the databse name and sonar qube password and webhost port no is 9000
+        - sonar config file /conf/sonar.properties
+        - # useradd sonar
+        - # chown sonar:sonar /opt/sonar/ -R
+        - # sed -i -e '/^#RUN_AS_USER/ c RUN_AS_USER=sonar' /opt/sonar/bin/linux-x86-64/sonar.sh  --> can only run by sonar user
+        - # vim /opt/sonar/bin/linux-x86-64/sonar.sh
+        - # vim /opt/sonar/conf/wrapper.conf
+        - # alternatives --config java
+        - # vim /opt/sonar/conf/wrapper.conf
+        - now to start the sonrqube
+        - # /opt/sonar/bin/linux-x86-64/sonar.sh start
+        - to show status
+        - # /opt/sonar/bin/linux-x86-64/sonar.sh status
+        - to get logs 
+        - # less logs/sonar.log
+
+
 
 
 
