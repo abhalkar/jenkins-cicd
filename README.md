@@ -162,6 +162,7 @@
             - plugin name :- Authorized projects
 
 # how to take backup of our jobs
+    - we taken backup we use maven fo pipeline to seedjob 
     - XML jobs to dsl github search on google
     - Jenkins XML to Job DSL converter repo```https://github.com/abhalkar/jenkinsxml2jobdsl```
     - yum install maven 
@@ -178,8 +179,86 @@
             - url 
             - cread 
             - path 
+# What is ci/cd ?
+    - build: artifact 
+        - android (apk)
+        - java (war,jar)
+        - linux (.rpm .deb)
 
+    - Build tools for java 
+        - jenkins
+        - gradel
+        - maven (2004, morden version apache ant, support more language(C#,ruby,java), depends on xml)
+        - apache ant
 
+# what is maven ?
+    - maven in five minutes min (https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
+    - dev(unit test) -> tets(testing) -> prod(final)
+    - perquest is java 
+## Installation maven 
+    - download maven 
+    - curl -O https://dlcdn.apache.org/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz
+    - tar -zxf apache-maven-3.8.5-bin.tar.gz
+    - cd apache-maven-3.8.5
+    - $set env variable
+    - vi /etc/profile
+        - export PATH=$PATH:'/root/apache-maven-3.8.5'
+        - source /etc/profile
+    - mvn --version 
+
+## project creation
+    - to create dir hirearchy 
+    - proper systematic structure is define (img,file,src,com)
+    - pom.xml imp file
+        - mvn archetype:generate -DgroupId=com.cloudblitz.aap -DartifactId=cloudblitz-aap -DarchetypeArtifactId=maven-archetype-quickstart     -DarchetypeVersion=1.4 -DinteractiveMode=false
+        - yum install tree -y
+        - tree cloudblitz-app
+## Maven build life cycle 
+
+    - EG:-# mvn archetype:generate -DgroupId=com.cloudblitz.aap -DartifactId=cloudblitz-aap -DarchetypeArtifactId=maven-archetype-quickstart     -DarchetypeVersion=1.4 -DinteractiveMode=false
+
+    - each filed life cylce contains 3 faces 
+        - Default
+            - fases 
+        - clean
+            - for cleaning the pervioius aap build
+        - site
+            - docaumentation
+    - build life cycle
+        - valid
+        - compaile
+        - test 
+        - package
+        - intergartion-test
+        - verify
+        - install 
+        - deploy
+    - what is pom.xml
+        - cat pom.xml
+        - all the dependices are mentioned in pom.xml file required for project
+        - we can taken dependices on google like selinum config we add in above pom.xml(eg: junit) file (accroding to project)
+        - issue need to fixed in pom.xml
+
+## Lets make an appln and make a built
+    - pull the application from git repo
+    - # tree studententaap-ui
+    - # cd studentaap-ui
+    - for to create buil make sure you in current where pom.xml is avilable 
+        - # mvn clean   -> used to clean previos build
+        - # mvn packages or # mvn build   -> all plugines will get download for project
+        - # cd /target
+        - studentapp-2.2-SNAPSHOT.war     -> artifact now we will deploy on tomcat 
+    - install tomcat 
+        - # curl -O https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.79/bin/apache-tomcat-8.5.79.zip
+        - # unzip apache-tomcat-8.5.79
+        - # chmod 700 catalina.sh
+        - #  /apache-maven-3.8.5/bin./catalina.sh start
+    - place the application to /webapps diir
+        - #  cp /root/studentapp-ui/target/studentapp-2.2-SNAPSHOT.war /root/apache-tomcat-8.5.79/webapps/
+        - allow the 8080 port 
+        - url:- ip:8080:app-name/   -> to verify 
+
+    
     
 
  
