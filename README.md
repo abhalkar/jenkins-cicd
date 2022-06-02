@@ -243,20 +243,64 @@
     - pull the application from git repo
     - # tree studententaap-ui
     - # cd studentaap-ui
+
     - for to create buil make sure you in current where pom.xml is avilable 
         - # mvn clean   -> used to clean previos build
         - # mvn packages or # mvn build   -> all plugines will get download for project
         - # cd /target
         - studentapp-2.2-SNAPSHOT.war     -> artifact now we will deploy on tomcat 
+
     - install tomcat 
         - # curl -O https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.79/bin/apache-tomcat-8.5.79.zip
         - # unzip apache-tomcat-8.5.79
         - # chmod 700 catalina.sh
         - #  /apache-maven-3.8.5/bin./catalina.sh start
+
     - place the application to /webapps diir
         - #  cp /root/studentapp-ui/target/studentapp-2.2-SNAPSHOT.war /root/apache-tomcat-8.5.79/webapps/
         - allow the 8080 port 
         - url:- ip:8080:app-name/   -> to verify 
+
+## lets setup a pipeline for all pull,build,test, deploy 
+    - node 1
+        - lauch a new instace(node1) 
+        - # curl -O https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.79/bin/apache-tomcat-8.5.79.zip
+        - # unzip apache-tomcat-8.5.79.zip
+        - # yum install unzip
+        - # unzip apache-tomcat-8.5.79.zip
+        - # cd apache-tomcat-8.5.79
+        - # cd bin/
+        - # chmod 700 catalina.sh
+        - # ./catalina.sh start
+        
+    - need to do some config on node1
+        - #  cd conf/
+        - # vim tomcat-users.xml                --> local host config file
+            - <role rolename="manager-gui"/>
+            - <role rolename="manager-script"/>
+            - <role rolename="manager-jmx"/> 
+            - <role rolename="manager-status"/>
+            - <role rolename="admin-gui"/>
+            - <user username="linux" password="readhat" roles="manager-gui","manager-script","manager-jmx","manager-status","admin-gui"/>
+
+        - # cd ../webapps/
+        - # cd host-manager/META-INF/
+        - # vim context.xml                  --> for host config file
+            - <!--  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+                allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> --> 
+        - # cd webaaps/manager/META-INF
+        - # vim context.xml
+            - <!--  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />  -->
+
+        - # ./catalina.sh stop 
+        - # ./catalina.sh start
+        
+    - jenkins master
+        - aad a new iteam 
+        - create a pipeline project
+        - pull it form repo 
+        - provide the script path 
 
     
     

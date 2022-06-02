@@ -26,7 +26,9 @@
         - then configure the project 
             - nevigate -> manage jenkins -> Configure Global Security -> Access Control for Builds ->Project default Build Authorization -> run as user aho triggred build
 - maven intergation 
-    - 
+- deploy to container
+    - artifact uploder 
+
 
             
         
