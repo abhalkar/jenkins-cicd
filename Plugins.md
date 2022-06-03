@@ -34,7 +34,7 @@
     - to avoid if test fail then should not deploy to test 
     - by default if quailt gate fails then still move to test 
     - use the pipeline syntex -> wait for quality gate
-    - need to config webhook becasue we are giving the trigger to another person 
+    
  
 
 

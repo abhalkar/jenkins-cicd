@@ -17,7 +17,7 @@ pipeline {
                 -Dsonar.projectKey=student-aap1 \\
                 -Dsonar.host.url=http://3.109.203.173:9000 \\
                 -Dsonar.login=83f673adc59d3592c980a9114b3d3f5a6a0f4b79'''
-                waitForQualityGate abortPipeline: false, credentialsId: 'sonar-cred'
+                waitForQualityGate abortPipeline: true, credentialsId: 'sonar-cred'
             }
         }
         stage ('deploy') { 

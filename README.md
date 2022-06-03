@@ -386,9 +386,14 @@
     - copy mvn cmd for sonar and make a sheel script form pipeline syntex
     - then past in pipeline refer pipelinesonar
     - now add pipeline in jenkins job pull throug scm -> provide path 
-## how to avoid the if test fail then should not deploy to test 
-    - we will need quality gate
 
+## how to avoid if test fail then should not deploy to test 
+    - we will need quality gate plugin
+    - need to config webhook becasue we are giving the trigger to another person 
+    - generate a pipeline syntax choose -> wait fot quality gate for sonar -> select cread. -> copy the generated syntax into pipeline script as mention in pipelinesonar
+        - how to aad webhook in sonarqube 
+            - go in sonarqube project setting -> admin -> configuration -> webhook -> create -> name: jenkins-student-aapwebhook -> url: jenkins url(http://13.233.64.230:8080/sonarqube-webhook/) -> secret: no need -> save.
+            - now in jenkins sevre in pipeline add new stage or copy paste the synex in test     
 
 
 
