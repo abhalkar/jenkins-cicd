@@ -394,6 +394,7 @@
         - how to aad webhook in sonarqube 
             - go in sonarqube project setting -> admin -> configuration -> webhook -> create -> name: jenkins-student-aapwebhook -> url: jenkins url(http://13.233.64.230:8080/sonarqube-webhook/) -> secret: no need -> save.
             - now in jenkins sevre in pipeline add new stage or copy paste the synex in test     
+        
 
 
 

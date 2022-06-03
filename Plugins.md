@@ -34,6 +34,9 @@
     - to avoid if test fail then should not deploy to test 
     - by default if quailt gate fails then still move to test 
     - use the pipeline syntex -> wait for quality gate
+- ansible 
+    - use to intergare ansible with jenkins
+
     
  
 
