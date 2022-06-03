@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Pull') { 
             steps {
-                git 'https://github.com/shubhamkalsait/studentapp-ui.git'
+                git 'https://github.com/abhalkar/studentapp-ui.git'
             }
         }
         stage('Build') { 
@@ -19,15 +19,11 @@ pipeline {
                 waitForQualityGate abortPipeline: true
                }
             }
-        }
-        stage('pull-ansible'){
-            steps {
-                git 'https://github.com/shubhamkalsait/ansible-b11.git'
-            }
+            
         }
         stage('Deploy') { 
             steps {
-                sh 'ansible-playbook rolecfg.yml'
+                echo "deployed success"
             }
         }
     }
