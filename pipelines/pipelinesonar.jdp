@@ -27,8 +27,7 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
-                sh 'ansible-playbook rolecfg.yml'
-            }
+                ansiblePlaybook credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'anbile', inventory: 'hosts', playbook: 'rolecfg.yml'            }
         }
     }
 }
