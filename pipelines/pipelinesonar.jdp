@@ -1,30 +1,33 @@
 pipeline {
     agent any 
     stages {
-        stage ('pull') { 
+        stage('Pull') { 
             steps {
-                git branch: 'main', url: 'https://gitlab.com/abhalkar/studentapp-ui.git' 
+                git 'https://github.com/shubhamkalsait/studentapp-ui.git'
             }
         }
-        stage ('build') { 
-            steps {
-                sh 'mvn clean package'
-            }
-        }
-        stage ('test') { 
+        stage('Build') { 
             steps {
                 withSonarQubeEnv('sonar') {
-                sh 'mvn sonar:sonar'
+                sh 'mvn clean package sonar:sonar'
+              }
             }
         }
-        stage("Quality gate") {
+        stage("QualityGate") {
             steps {
+               timeout(time: 1, unit: 'HOURS') {
                 waitForQualityGate abortPipeline: true
+               }
             }
         }
-        stage ('deploy') { 
+        stage('pull-ansible'){
             steps {
-                echo "deployed succesfully"        
+                git 'https://github.com/shubhamkalsait/ansible-b11.git'
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                sh 'ansible-playbook rolecfg.yml'
             }
         }
     }
