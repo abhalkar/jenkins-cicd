@@ -28,6 +28,9 @@
 - maven intergation 
 - deploy to container
     - artifact uploder 
+- sonarqube scanner
+    - use to integrate the sonar with jinekins
+ 
 
 
             

@@ -9,8 +9,8 @@ rpm -ivh bellsoft-jdk11.0.4-linux-amd64.rpm
 rpm -ivh http://repo.mysql.com/mysql57-community-release-el7.rpm
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 yum install mysql-server -y
-systemctl start msqld
-systemctl enable msqld
+systemctl start mysqld
+systemctl enable mysqld
 echo 'vm.max_map_count=262144' >/etc/sysctl.conf
 sysctl -p
 echo '* - nofile 80000' >>/etc/security/limits.conf

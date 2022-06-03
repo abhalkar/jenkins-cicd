@@ -324,8 +324,8 @@
             - # rpm -ivh http://repo.mysql.com/mysql57-community-release-el7.rpm
         - # rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
         - # yum install mysql-server -y
-        - # systemctl start msqld
-        - # systemctl enable msqld
+        - # systemctl start mysqld
+        - # systemctl enable mysqld
         - # echo 'vm.max_map_count=262144' >/etc/sysctl.conf
         - # sysctl -p
         - # echo '* - nofile 80000' >>/etc/security/limits.conf
@@ -364,6 +364,27 @@
         - # /opt/sonar/bin/linux-x86-64/sonar.sh status
         - to get logs 
         - # less logs/sonar.log
+    - check the sonar qube by hitting the url:9000 
+        - Login -> admin -> admin 
+
+    - now lets create new project in sonar qube
+        - add a new projecct ->(project key) studentaap -> (token) studentaap -> copy the token (one time visible) 83f673adc59d3592c980a9114b3d3f5a6a0f4b79
+        - select java -> maven -> copy scanner -> exicute it on Jenkins server 
+        - select the studentaap-ui (jenkins sevre) -> run the scanner cmd where the pon.xml file is present
+        - will build here and sent it to sonar qube
+        - sonarque is used for quality check of aap 
+        - vunlarablity vs code smell 
+        - bugs,vulnerablities,code smell,coverage,duplication here quality gate check will pass.
+        - Quality check -> we put ruls for our application
+# Intgrate sonarqube with jenkins
+    - will need plugin sonaqube scanner
+        - lets create a new pipeline for sonar 
+        - use the pipeline syntext and create a shell script
+    - need to configure on jnknis 
+        - nevigate to configure system -> sonarqube server -> add sonar -> name: sonar -> url: http://3.109.203.173:9000 -> authenthentication: add cred -> manager jenkis -> manage cred -> add txt and token in it -> now add cred -. save
+    - copy mvn cmd for sonar and make a sheel script form pipeline syntex
+    - then past in pipeline refer pipelinesonar
+    - 
 
 
 
