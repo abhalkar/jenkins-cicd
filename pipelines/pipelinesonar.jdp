@@ -14,10 +14,8 @@ pipeline {
             }
         }
         stage("QualityGate") {
-            steps {
-               timeout(time: 1, unit: 'MINUTES') {
+            steps {     
                 waitForQualityGate abortPipeline: true
-               }
             }
         }
         stage('pull-ansible'){
