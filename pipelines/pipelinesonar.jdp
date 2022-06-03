@@ -14,20 +14,21 @@ pipeline {
             }
         }
         stage("QualityGate") {
-            steps {     
+            steps {
+               timeout(time: 1, unit: 'HOURS') {
                 waitForQualityGate abortPipeline: true
+               }
             }
         }
         stage('pull-ansible'){
             steps {
-                git 'https://gitlab.com/abhalkar/ansible-b11.git'
+                git 'https://github.com/ansible/ansible-b11.git'
             }
         }
-       stage('Deploy') { 
+        stage('Deploy') { 
             steps {
                 sh 'ansible-playbook rolecfg.yml'
             }
         }
-
     }
 }
