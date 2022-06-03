@@ -384,7 +384,8 @@
         - nevigate to configure system -> sonarqube server -> add sonar -> name: sonar -> url: http://3.109.203.173:9000 -> authenthentication: add cred -> manager jenkis -> manage cred -> add txt and token in it -> now add cred -. save
     - copy mvn cmd for sonar and make a sheel script form pipeline syntex
     - then past in pipeline refer pipelinesonar
-    - 
+    - now add pipeline in jenkins job pull throug scm -> provide path 
+    
 
 
 
