@@ -20,9 +20,15 @@ pipeline {
                }
             }
         }
+        stage('pull-ansible'){
+            steps {
+                git 'https://github.com/abhalkar/ansible-b11.git'
+            }
+        }
         stage('Deploy') { 
             steps {
-                ansiblePlaybook credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'anbile', inventory: 'hosts', playbook: 'rolecfg.yml'            }
+                sh 'ansible-playbook rolecfg.yml'
+            }
         }
     }
 }
