@@ -22,8 +22,7 @@ pipeline {
         }
         stage('pull-ansible'){
             steps {
-                git 'https://github.com/abhalkar/ansible-b11.git'
-            }
+                ansiblePlaybook credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'anbile', inventory: 'rolecfg.yml', playbook: '/usr/bin/'            }
         }
         stage('Deploy') { 
             steps {
