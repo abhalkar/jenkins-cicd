@@ -13,16 +13,18 @@ pipeline {
         }
         stage ('test') { 
             steps {
-                sh '''mvn sonar:sonar \\
-                -Dsonar.projectKey=student-aap1 \\
-                -Dsonar.host.url=http://3.109.203.173:9000 \\
-                -Dsonar.login=83f673adc59d3592c980a9114b3d3f5a6a0f4b79'''
-                waitForQualityGate abortPipeline: true, credentialsId: 'sonar-cred'
+                withSonarQubeEnv('sonar') {
+                sh 'mvn sonar:sonar'
+            }
+        }
+        stage("Quality gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
             }
         }
         stage ('deploy') { 
             steps {
-                echo "deploy succesfull"
+               deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '', url: 'http://13.233.96.211:8080/')], contextPath: '/', war: '**/*.war'
             }
         }
     }
