@@ -22,7 +22,7 @@ pipeline {
         }
         stage('pull-ansible'){
             steps {
-                ansiblePlaybook credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'anbile', inventory: 'rolecfg.yml', playbook: '/usr/bin/'            }
+                ansiblePlaybook credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'anbile', inventory: 'rolecfg.yml', playbook: '/root/ansible/'            }
         }
         stage('Deploy') { 
             steps {
