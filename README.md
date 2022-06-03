@@ -376,6 +376,7 @@
         - vunlarablity vs code smell 
         - bugs,vulnerablities,code smell,coverage,duplication here quality gate check will pass.
         - Quality check -> we put ruls for our application
+
 # Intgrate sonarqube with jenkins
     - will need plugin sonaqube scanner
         - lets create a new pipeline for sonar 
@@ -385,7 +386,9 @@
     - copy mvn cmd for sonar and make a sheel script form pipeline syntex
     - then past in pipeline refer pipelinesonar
     - now add pipeline in jenkins job pull throug scm -> provide path 
-    
+## how to avoid the if test fail then should not deploy to test 
+    - we will need quality gate
+
 
 
 
